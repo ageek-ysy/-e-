@@ -1,11 +1,12 @@
 package cn.itlaobing.eshop.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
 * Created by Administrator on 2017/11/3 0003.
 */
-public class BaseGoods {
+public class BaseGoods implements Serializable {
 
     private Long goodsid ; // id
     private String goodsNumber ; // 商品内部编号

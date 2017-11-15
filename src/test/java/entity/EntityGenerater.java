@@ -31,7 +31,7 @@ public class EntityGenerater extends BaseDao {
 
     @Test
     public void entityGenerater() throws SQLException, IOException {
-        String tableName = "base_goods";
+        String tableName = "itlb_focuss";
         String ddl = getCreateTableDdl(tableName);
         //显示sql语句
       //  logger.info(ddl);

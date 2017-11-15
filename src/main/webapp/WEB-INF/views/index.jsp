@@ -1,4 +1,5 @@
 <%@page pageEncoding="utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<title>新鲜e客（pinnong.com）-通州区网购首选-正品低价、品质保障、配送及时、轻松购物</title>
 	<js>
 		<script type="text/javascript" src="assets/js/pc/index.js"></script>
@@ -274,31 +275,19 @@
 
 		<div id="myCarousel" class="carousel slide">
 			<ol class="carousel-indicators">
-
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-
-				<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-
-				<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-
+				<c:forEach items="${photoList}" varStatus="start">
+					<li xdata-target="#myCarousel" data-slide-to="${start.index}" class="active"></li>
+				</c:forEach>
 			</ol>
 			<div id="myCarouselDiv" class="carousel-inner">
 
-				<div class="item active"
-					 style="background:url('file/5e39a873a82518b5a3bbcc178fad04d3.jpg') center no-repeat; width:100%; height:520px; cursor: pointer">
-
-				</div>
-
-				<div class="item "
-					 style="background:url('file/a483033f797b2c61205f092a8ab0b2e6.jpg') center no-repeat; width:100%; height:520px; cursor: pointer">
-
-				</div>
-
-				<div class="item "
-					 style="background:url('file/c45145f740e98621a12ac8532db2978b.jpg') center no-repeat; width:100%; height:520px; cursor: pointer">
-
-				</div>
-
+				<c:if test="${ not empty photoList}">
+					<c:forEach items="${photoList}" var="photo" varStatus="start">
+						<div class="item ${start.index==0?'active':''}"
+							 style="background:url('${photo.img}') center no-repeat; width:100%; height:520px; cursor: pointer">
+						</div>
+					</c:forEach>
+				</c:if>
 			</div>
 		</div>
 
@@ -312,61 +301,19 @@
                         热销产品
                     </span>
 				</div>
-				<div class="bottom-c">
-
-
-					<ul>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html"><img src="file/d8373ce9293ebdd4491bf161a7713188_25.jpg"/><br/>
-								<a target="_blank" href="goods/detail.html" class="title">平谷大桃</a><br/>
-								<span class="price">￥33.6</span>
-
-						</li>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html"><img src="file/bcd235c4d9f30c3b86820682d13b85e4_25.jpg"/><br/>
-								<a target="_blank" href="goods/detail.html" class="title">2L金纺柔顺剂（薰衣草）</a><br/>
-								<span class="price">￥22.9</span>
-
-						</li>
-
-						<li  class="trLast">
-
-							<a target="_blank" href="goods/detail.html"><img src="file/b6d61c3e8eddda528d71323728f5161d_25.jpg"/><br/>
-								<a target="_blank" href="goods/detail.html?goodId=3" class="title">雀巢瓶丝滑摩卡咖啡268ml</a><br/>
-								<span class="price">￥5.5</span>
-
-						</li>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html?goodId=4"><img src="file/b4ef635c7ea62b8832f787da99baaead_25.jpg"/><br/>
-								<a target="_blank" href="goods/detail.html?goodId=4" class="title">400G伊利全脂营养奶粉</a><br/>
-								<span class="price">￥32.8</span>
-
-						</li>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html?goodId=5"><img src="file/46314e5637a94dace30797dbcc81654e_25.jpg"/><br/>
-								<a target="_blank" href="goods/detail.html?goodId=5" class="title">126G桶康师傅老坛酸菜排骨</a><br/>
-								<span class="price">￥4.5</span>
-
-						</li>
-
-						<li  class="trLast">
-
-							<a target="_blank" href="goods/detail.html?goodId=6"><img src="file/0d6f13720ace309d8aeae56a3c48cd81_25.jpg"/><br/>
-								<a target="_blank" href="goods/detail.html?goodId=6" class="title">太太乐鸡精454g</a><br/>
-								<span class="price">￥17.8</span>
-
-						</li>
-
-					</ul>
-
+				<script language="JavaScript">
+					$(function () {
+						$.ajax({
+							url:"${pageContext.request.contextPath}/goods/queryHot",
+							type:"GET"
+                        }).done(function (data) {
+                            console.log(data);
+                            $(data).appendTo($("#hot_list"))
+                        });
+                    });
+				</script>
+				<div id="hot_list" class="bottom-c">
+					<!--这里是热销产品-->
 				</div>
 			</div>
 
@@ -377,65 +324,23 @@
                         最新上架
                     </span>
 				</div>
-				<div class="bottom-c">
+				<script language="JavaScript">
+                    $(function () {
+                        $.ajax({
+                            url:"${pageContext.request.contextPath}/goods/queryNew",
+                            type:"GET"
+                        }).done(function (data) {
+                            console.log(data);
+                            $(data).appendTo($("#new_list"))
+                        });
+                    });
+				</script>
 
-
-					<ul>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html?goodId=15"><img src="file/ccb0232822483becc481c1b480b5d465_25.jpg"/></a><br/>
-							<a target="_blank" href="goods/detail.html?goodId=15" class="title">500g威猛强力洁厕液（清香）</a><br/>
-							<span class="price">￥4.9</span>
-
-						</li>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html?goodId=14"><img src="file/9819224f0e648504bb553c07d74a2ff4_25.jpg"/></a><br/>
-							<a target="_blank" href="goods/detail.html?goodId=14" class="title">七度空间少女棉日10片</a><br/>
-							<span class="price">￥8.7</span>
-
-						</li>
-
-						<li  class="trLast">
-
-							<a target="_blank" href="goods/detail.html?goodId=13"><img src="file/e0df4c8918a6d28f1d9a40bfaa3f0e2d_25.jpg"/></a><br/>
-							<a target="_blank" href="goods/detail.html?goodId=13" class="title">555ml怡宝饮用纯净水</a><br/>
-							<span class="price">￥2.0</span>
-
-						</li>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html?goodId=12"><img src="file/4f7a4b5caf0be541eb26395b035f5fac_25.jpg"/></a><br/>
-							<a target="_blank" href="goods/detail.html?goodId=12" class="title">面条</a><br/>
-							<span class="price">￥2.6</span>
-
-						</li>
-
-						<li >
-
-							<a target="_blank" href="goods/detail.html?goodId=11"><img src="file/4f675886a6bb74c1636f7884a455ff2d_25.jpg"/></a><br/>
-							<a target="_blank" href="goods/detail.html?goodId=11" class="title">豆干</a><br/>
-							<span class="price">￥8.0</span>
-
-						</li>
-
-						<li  class="trLast">
-
-							<a target="_blank" href="goods/detail.html?goodId=10"><img src="file/31285fb534437ad7c8587159462bce55_25.jpg"/></a><br/>
-							<a target="_blank" href="goods/detail.html?goodId=10" class="title">30G美吉果芒果干</a><br/>
-							<span class="price">￥5.5</span>
-
-						</li>
-
-					</ul>
-
-				</div>
+				<div id="new_list" class="bottom-c">
+						<!--显示最新上架商品-->
+					</div>
 			</div>
 		</div>
-
 
 		<div class="space"></div>
 

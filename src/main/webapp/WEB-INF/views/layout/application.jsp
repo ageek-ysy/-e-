@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="${applicationScope.basePath}">
+    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}">
 
     <title><sitemesh:write property="title" /></title>
     <meta name="renderer" content="webkit">
@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="assets/lib/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="assets/lib/css/animate.css"/>
     <link rel="stylesheet" href="assets/lib/css/style.css"/>
-    <sitemesh:write property="css"  />
     <link rel="stylesheet" type="text/css" href="assets/css/pc/common.css"/>
-
+    <sitemesh:write property="css"  />
     <script type="text/javascript" src="assets/lib/js/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/bootstrap.min.js"></script>
     <sitemesh:write property="js"  />
@@ -70,7 +69,7 @@
         <div class="rc">
 
             您好，请<a href="members/login.html" style="margin:0;">登录</a>&nbsp;
-            <a href="members/register.html">免费注册</a>&nbsp;|
+            <a href="${pageContext.request.contextPath}/turnto/register">免费注册</a>&nbsp;|
             <a href="members/info.html">会员中心</a>&nbsp;|
             <a href="http://www.ttlsgs.com/downloads/down">APP下载</a>
         </div>

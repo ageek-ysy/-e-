@@ -20,6 +20,10 @@ public class SiteMeshFilter extends ConfigurableSiteMeshFilter {
         //WEB-INF/views/layout/application.jsp
         builder.addDecoratorPath("/**","/WEB-INF/views/layout/application.jsp");
         builder.addExcludedPath("/asserts/**");
+        builder.addExcludedPath("/goods/queryHot");
+        builder.addExcludedPath("/goods/querytj");
+        builder.addExcludedPath("/goods/queryNew");
         builder.addTagRuleBundle(new CssJsTag());
+
     }
 }

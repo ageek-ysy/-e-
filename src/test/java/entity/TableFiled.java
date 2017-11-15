@@ -59,6 +59,9 @@ public class TableFiled {
         if (dataType.contains("datetime")){
             return "Date";
         }
+        if(dataType.contains("bit")){
+            return "Boolean";
+        }
         return "";
     }
 
