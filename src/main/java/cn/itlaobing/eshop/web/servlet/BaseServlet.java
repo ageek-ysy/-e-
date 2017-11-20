@@ -78,7 +78,7 @@ public class BaseServlet extends HttpServlet {
 
     public void responseTo(HttpServletResponse response,String path) throws IOException {
         String contextPath = super.getServletContext().getContextPath();
-        if(!"/".startsWith(path)){
+        if(!path.startsWith("/")){
             path = "/"+path;
         }
         response.sendRedirect(contextPath+path);

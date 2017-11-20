@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@page pageEncoding="UTF-8" %>
+<html>
 <head>
-	<base href="file:////home/ysy/Documents/16_新鲜e客/第二阶段项目/HTML/front/">
+    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}">
     <title>欢迎登录新鲜e客_新鲜e客（pinnong.com）-通州区网购首选-正品低价、品质保障、配送及时、轻松购物</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="keywords" content="通州酒水,通州生鲜,通州水果,通州蔬菜,通州肉,通州蛋,通州促销活动,通州促销产品,北京通糖烟酒糖业有限公司,北京通州区超市"/>
@@ -23,8 +23,8 @@
 
 </head>
 <body>
-    
-    
+
+
 
 
 <link rel="stylesheet" type="text/css" href="assets/css/pc/common.css"/>
@@ -35,21 +35,21 @@
 <div class="top">
 	<div class="container">
 		<div class="lc">
-			
+
 		</div>
 
 		<div class="rc">
-			
-				您好，请<a href="members/login.html" style="margin:0;">登录</a>&nbsp;
-				<a href="members/register.html">免费注册</a>&nbsp;|
+
+				您好，请<a href="${pageContext.request.contextPath}/turnto/signin" style="margin:0;">登录</a>&nbsp;
+				<a href="${pageContext.request.contextPath}/turnto/register">免费注册</a>&nbsp;|
 				<a href="members/info.html">会员中心</a>&nbsp;|
-			
-			
-			
+
+
+
 			<a href="http://www.ttlsgs.com/downloads/down">APP下载</a>
-			
-			
-			
+
+
+
 		</div>
 	</div>
 </div>
@@ -76,7 +76,7 @@
                 <div class="login-box">
                     <div class="login-title">账户登录</div>
                     <div class="login-content">
-                        <form action="index.html" method="post" id="loginForm" onsubmit="return true;">
+                        <form action="${pageContext.request.contextPath}/user/signin" method="post" id="loginForm" onsubmit="return true;">
                             <input type="hidden" class="loginToPage" value="-2"/>
 
                             <div class="form-group" style="margin-bottom: 0;">
@@ -88,7 +88,7 @@
                                 <div class="col-xs-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                        <input type="text" id="username" name="username" class="form-control input-lg" value="" placeholder="请输入手机号" maxlength="11"/>
+                                        <input type="text" id="username" name="username" class="form-control input-lg" value="${sessionScope.account}" placeholder="请输入手机号" maxlength="11"/>
                                     </div>
                                 </div>
                             </div>

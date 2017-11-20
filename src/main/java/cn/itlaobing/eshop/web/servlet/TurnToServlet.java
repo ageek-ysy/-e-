@@ -22,4 +22,8 @@ public class TurnToServlet extends BaseServlet {
     public void toRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
         toView(request,response,"members/register");
     }
+    @RequestMapping("/signin")
+    public void toSignIn(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+        toView(request,response,"members/login");
+    }
 }

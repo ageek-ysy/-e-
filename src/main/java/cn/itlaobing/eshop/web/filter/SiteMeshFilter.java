@@ -22,6 +22,7 @@ public class SiteMeshFilter extends ConfigurableSiteMeshFilter {
         builder.addExcludedPath("/asserts/**");
         builder.addExcludedPath("/goods/queryHot");
         builder.addExcludedPath("/goods/querytj");
+        builder.addExcludedPath("/turnto/signin");
         builder.addExcludedPath("/goods/queryNew");
         builder.addTagRuleBundle(new CssJsTag());
 

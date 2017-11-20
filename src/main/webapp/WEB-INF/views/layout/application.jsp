@@ -1,4 +1,5 @@
 <%@page pageEncoding="utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +69,7 @@
 
         <div class="rc">
 
-            您好，请<a href="members/login.html" style="margin:0;">登录</a>&nbsp;
+            您好，请<a href="${pageContext.request.contextPath}/turnto/signin" style="margin:0;">登录</a>&nbsp;
             <a href="${pageContext.request.contextPath}/turnto/register">免费注册</a>&nbsp;|
             <a href="members/info.html">会员中心</a>&nbsp;|
             <a href="http://www.ttlsgs.com/downloads/down">APP下载</a>

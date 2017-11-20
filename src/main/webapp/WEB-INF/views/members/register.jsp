@@ -25,8 +25,6 @@
 	</div>
 </div>
 <!-- 导航条 E -->
-
-
     <div class="main green-bg">
         <div class="container row">
             <div class="col-sm-6 pull-left">
@@ -35,10 +33,11 @@
 
             <div class="col-sm-6 pull-right regisiter-con">
                 <div class="title">注册账号</div>
-                <form class="form-horizontal regisit-wrap-inner" method="post" id="registerForm" onsubmit="return true;" action="members/login.html">
+                <form class="form-horizontal regisit-wrap-inner" method="post" id="registerForm" onsubmit="return true;" action="${pageContext.request.contextPath}/user/signup">
 
                     <div class="form-group">
                         <div class="col-xs-12 errorTip">
+                            ${msg}
                         </div>
                     </div>
 
@@ -46,7 +45,7 @@
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                                <input id="username" type="text" name="username" class="form-control input-lg" placeholder="手机号" maxlength="11"/>
+                                <input id="username" type="text" name="account" class="form-control input-lg" placeholder="手机号" maxlength="11"/>
                             </div>
                         </div>
                     </div>
@@ -67,23 +66,71 @@
                         </div>
                     </div>
 
+                    <script type="application/javascript">
+                        <!--点击验证码图片实现局部刷新-->
+                        $(function(){
+                            $("#imgcode").click(function () {
+                                var d = new Date().getTime();
+                                var id = document.getElementById("imgcode").src="/yzm?d"+d;
+                            });
+                        });
+                    </script>
+
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-text-width"></span></span>
                                 <input type="text" id="verificationCode" name="verificationCode" class="form-control input-lg" placeholder="随机验证码" maxlength="6"/>
-
-                                <a data-disabled="0" href="javascript:void(0);" class="input-group-addon btnSendMessage"><img src="/yzm" title="看不清,换一张"></a>
+                                <a data-disabled="0" href="javascript:void(0);" class="input-group-addon codeImg"><img id="imgcode" src="/yzm" title="看不清,换一张"></a>
                             </div>
                         </div>
                     </div>
+
+                    <script type="application/javascript">
+                        //#dxyzm   验证码输入框
+                        var time = 10;
+                        var timer=null;
+                        function changeStatus() {
+                            //.btnSendMessage  获取短信验证码
+                            $(".btnSendMessage").text(time+"秒后重新发送");
+                            time--;
+                            if(time<=0){
+                                time=10;
+                                $(".btnSendMessage").text("获取短信验证码");
+                                window.clearTimeout(timer);
+                                $(".btnSendMessage").removeAttr("disabled")
+                                return;
+                            }else{
+                                timer=setTimeout(changeStatus,1000) ;
+                            }
+                        }
+                        $(function () {
+                            $(".btnSendMessage").click(function () {
+                                if($(".btnSendMessage").attr("disabled")){
+                                    return false;
+                                }
+
+                                $(".btnSendMessage").attr("disabled",true);
+                                console.log(">>>>>>>>>>>");
+                                $.ajax({
+                                    url:"${pageContext.request.contextPath}/user/msgsend",
+                                    type:"post",
+                                    dataType:"json",
+                                }).done(function (data) {
+
+                                    $("#dxyzm").val(data.msgCode);
+                                    changeStatus();
+                                });
+                            });
+                        });
+                    </script>
 
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-text-width"></span></span>
                                 <input type="text" id="dxyzm" name="dxyzm" class="form-control input-lg" placeholder="短信验证码" maxlength="6"/>
-                                <a data-disabled="0" href="javascript:void(0);" class="input-group-addon btnSendMessage">获取短信验证码</a>
+                                <a  href="javascript:void(0);" class="input-group-addon btnSendMessage">获取短信验证码</a>
                             </div>
                         </div>
                     </div>

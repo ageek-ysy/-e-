@@ -1,4 +1,5 @@
 
+
 $(function(){
     //flash N图自动切换展示
     /*$("#kinMaxShow").kinMaxShow({

@@ -18,7 +18,9 @@ $(function() {
 
 
     //获取短信验证码==================================================================
-    var local_code = getCookieValue("ck_code");
+    var local_code = getCookieValue("ck_code");//?
+    //dxyzm  验证码输入框
+    //btnSendMessage 获取短信验证码(超链接)
     if(local_code>0){
         var expire = local_code;
         //倒计时读秒
